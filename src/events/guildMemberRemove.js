@@ -52,13 +52,12 @@ export default {
                     });
                 } else {
                     const embed = new EmbedBuilder()
-                        .setTitle(embedTitle)
-                        .setDescription(goodbyeMessage)
-                        .setColor(welcomeConfig.leaveEmbed?.color || getColor('error'))
-                        .setThumbnail(user.displayAvatarURL())
-                        .addFields(
-                            { name: 'User', value: `${user.tag} (${user.id})`, inline: true },
-                            { name: 'Member Count', value: guild.memberCount.toString(), inline: true }
+                    .setTitle(`${user.username} nas je napustio/la`)
+                    .setColor(welcomeConfig.leaveEmbed?.color || getColor('error'))
+                    .setThumbnail(user.displayAvatarURL())
+                    .addFields(
+                            { name: 'Korisnik', value: user.username, inline: true },
+                            { name: 'Broj članova', value: guild.memberCount.toString(), inline: true }
                         )
                         .setTimestamp()
                         .setFooter({ text: embedFooter });
