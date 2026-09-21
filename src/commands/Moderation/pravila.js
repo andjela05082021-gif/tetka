@@ -99,6 +99,7 @@ export default {
             const embed = new EmbedBuilder()
                 .setTitle('TETKA PRAVILA 📑')
                 .setDescription(PRAVILA)
+                .setThumbnail(interaction.client.user.displayAvatarURL({ size: 256 }))
                 .setImage(SLIKA_LINK)
                 .setColor(0x2b2d31);
 
