@@ -38,7 +38,7 @@ export default {
                 const messageContent = welcomeConfig.welcomePing ? user.toString() : null;
 
                 const embedTitle = formatWelcomeMessage(
-                    welcomeConfig.welcomeEmbed?.title || ''🎉 Dobrodošao/la!',
+                    welcomeConfig.welcomeEmbed?.title || '🎉 Dobrodošao/la!',
                     formatData
                 );
                 const embedFooter = welcomeConfig.welcomeEmbed?.footer
