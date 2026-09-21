@@ -17,9 +17,7 @@ const TEXT_CHANNEL_TYPES = [
     ChannelType.GuildAnnouncement,
 ];
 
-const PRAVILA = `# TETKA PRAVILA 📑
-
-▫️ 🤠 **POŠTUJ SVE ČLANOVE**
+const PRAVILA = `▫️ 🤠 **POŠTUJ SVE ČLANOVE**
 Budi pristojan i ljubazan. Uvrede, diskriminacija i govor mržnje nisu dozvoljeni.
 
 ▫️ 🏷️ **SPAM JE ZABRANJEN**
@@ -98,10 +96,13 @@ export default {
 
         let sentMessage;
         try {
-            sentMessage = await channel.send({
-                content: PRAVILA,
-                embeds: [new EmbedBuilder().setImage(SLIKA_LINK).setColor(0x2b2d31)],
-            });
+            const embed = new EmbedBuilder()
+                .setTitle('TETKA PRAVILA 📑')
+                .setDescription(PRAVILA)
+                .setImage(SLIKA_LINK)
+                .setColor(0x2b2d31);
+
+            sentMessage = await channel.send({ embeds: [embed] });
         } catch (error) {
             logger.error('Pravila send failed', {
                 error: error?.message,
