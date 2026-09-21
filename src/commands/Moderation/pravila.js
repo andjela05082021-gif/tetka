@@ -10,8 +10,7 @@ import { logger } from '../../utils/logger.js';
 import { InteractionHelper } from '../../utils/interactionHelper.js';
 import { replyUserError, ErrorTypes } from '../../utils/errorHandler.js';
 
-// OVDJE ZALIJEPI DIREKTAN LINK DO SLIKE (između navodnika)
-const SLIKA_LINK = 'OVDJE_ZALIJEPI_LINK';
+const SLIKA_LINK = 'https://i.postimg.cc/Jz7Y3NYP/pravila.png';
 
 const TEXT_CHANNEL_TYPES = [
     ChannelType.GuildText,
@@ -34,7 +33,7 @@ To uključuje NSFW, nasilni, uvredljivi ili ilegalni sadržaj bilo koje vrste.
 Koristi kanale prema njihovoj namjeni. Ne šalji poruke u pogrešne kanale.
 
 ▫️ 🚫 **REKLAMIRANJE**
-Zabranjeno je deljenje linkova ka drugim serverima, sajtovima ili sadržaju bez odobrenja.`;
+Zabranjeno je dijeljenje linkova ka drugim serverima, sajtovima ili sadržaju bez odobrenja.`;
 
 function resolveTargetChannel(interaction) {
     const selected = interaction.options.getChannel('channel');
@@ -97,10 +96,24 @@ export default {
             });
         }
 
-        const sentMessage = await channel.send({
-            content: PRAVILA,
-            embeds: [new EmbedBuilder().setImage(https://i.postimg.cc/Jz7Y3NYP/pravila.png).setColor(0x2b2d31)],
-        });
+        let sentMessage;
+        try {
+            sentMessage = await channel.send({
+                content: PRAVILA,
+                embeds: [new EmbedBuilder().setImage(SLIKA_LINK).setColor(0x2b2d31)],
+            });
+        } catch (error) {
+            logger.error('Pravila send failed', {
+                error: error?.message,
+                guildId: interaction.guildId,
+                channelId: channel.id,
+            });
+            await InteractionHelper.safeEditReply(interaction, {
+                content: 'Slanje pravila nije uspjelo. Provjeri dozvole bota u tom kanalu.',
+                flags: MessageFlags.Ephemeral,
+            });
+            return;
+        }
 
         await InteractionHelper.safeEditReply(interaction, {
             embeds: [
