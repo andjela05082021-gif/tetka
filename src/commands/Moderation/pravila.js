@@ -3,17 +3,15 @@ import {
     PermissionFlagsBits,
     ChannelType,
     MessageFlags,
+    EmbedBuilder,
 } from 'discord.js';
-import { fileURLToPath } from 'url';
-import path from 'path';
 import { successEmbed } from '../../utils/embeds.js';
 import { logger } from '../../utils/logger.js';
 import { InteractionHelper } from '../../utils/interactionHelper.js';
 import { replyUserError, ErrorTypes } from '../../utils/errorHandler.js';
 
-// Slika mora biti u ISTOM folderu kao ovaj fajl (pravila.png)
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SLIKA = path.join(__dirname, 'pravila.png');
+// OVDJE ZALIJEPI DIREKTAN LINK DO SLIKE (između navodnika)
+const SLIKA_LINK = 'OVDJE_ZALIJEPI_LINK';
 
 const TEXT_CHANNEL_TYPES = [
     ChannelType.GuildText,
@@ -91,17 +89,17 @@ export default {
         const botPermissions = channel.permissionsFor(interaction.guild.members.me);
         if (
             !botPermissions?.has(PermissionFlagsBits.SendMessages) ||
-            !botPermissions?.has(PermissionFlagsBits.AttachFiles)
+            !botPermissions?.has(PermissionFlagsBits.EmbedLinks)
         ) {
             return replyUserError(interaction, {
                 type: ErrorTypes.PERMISSION,
-                message: `Bot nema dozvolu za slanje poruka i slika u ${channel}.`,
+                message: `Bot nema dozvolu za slanje poruka i embed linkova u ${channel}.`,
             });
         }
 
         const sentMessage = await channel.send({
             content: PRAVILA,
-            files: [SLIKA],
+            embeds: [new EmbedBuilder().setImage(https://i.postimg.cc/Jz7Y3NYP/pravila.png).setColor(0x2b2d31)],
         });
 
         await InteractionHelper.safeEditReply(interaction, {
