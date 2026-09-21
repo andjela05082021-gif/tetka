@@ -369,19 +369,13 @@ export const botConfig = {
   // WELCOME / GOODBYE MESSAGES
   // =========================
   welcome: {
-    // Welcome template posted when a user joins.
-    // Placeholders: {user}, {server}, {memberCount}
-    defaultWelcomeMessage:
-      "Welcome {user} to {server}! We now have {memberCount} members!",
-    // Goodbye template posted when a user leaves.
-    // Placeholders: {user}, {memberCount}
-    defaultGoodbyeMessage:
-      "{user} has left the server. We now have {memberCount} members.",
-    // Channel ID for welcome messages.
-    defaultWelcomeChannel: null,
-    // Channel ID for goodbye messages.
-    defaultGoodbyeChannel: null,
-  },
+  defaultWelcomeMessage:
+    "Dobrodošao/la {user} na {server}! 🎉\nSada nas ima {memberCount} članova!\n\n,
+  defaultGoodbyeMessage:
+    "{user} je napustio/la server. Sada nas ima {memberCount} članova.",
+  defaultWelcomeChannel: "1550528578125434971",
+  defaultGoodbyeChannel: null,
+},
 
   // =========================
   // COUNTER CHANNELS
