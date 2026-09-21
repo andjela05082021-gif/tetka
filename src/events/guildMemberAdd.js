@@ -37,10 +37,7 @@ export default {
 
                 const messageContent = welcomeConfig.welcomePing ? user.toString() : null;
 
-                const embedTitle = formatWelcomeMessage(
-                    welcomeConfig.welcomeEmbed?.title || '🎉 Dobrodošao/la!',
-                    formatData
-                );
+                const embedTitle = `${user.username} je ušao/la na server`;
                 const embedFooter = welcomeConfig.welcomeEmbed?.footer
                     ? formatWelcomeMessage(welcomeConfig.welcomeEmbed.footer, formatData)
                     : `Dobrodošao/la na ${guild.name}!`;
