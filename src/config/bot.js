@@ -370,7 +370,7 @@ export const botConfig = {
   // =========================
   welcome: {
   defaultWelcomeMessage:
-    "Dobrodošao/la {user} na {server}! 🎉\nSada nas ima {memberCount} članova!\n\n,
+    "Dobrodošao/la {user} na {server}! 🎉\nSada nas ima {memberCount} članova!",
   defaultGoodbyeMessage:
     "{user} je napustio/la server. Sada nas ima {memberCount} članova.",
   defaultWelcomeChannel: "1550528578125434971",
